@@ -5,19 +5,18 @@ import { getReplyFromGPT } from "./gptReply.js";
 dotenv.config();
 
 async function runBot() {
-  const comments = await getComments();
-
-  for (const comment of comments) {
-    if (!comment.message || comment.replied) continue;
-
-    const reply = await getReplyFromGPT(comment.message);
-    await replyToComment(comment.id, reply);
-    console.log(`💬 ตอบ: "${comment.message}" → "${reply}"`);
+  try {
+    const comments = await getComments();
+    for (const c of comments) {
+      if (!c.message || c.replied) continue;
+      const reply = await getReplyFromGPT(c.message);
+      await replyToComment(c.id, reply);
+      console.log(`💬 ตอบ: "${c.message}" → "${reply}"`);
+    }
+  } catch (e) {
+    console.error("❌ Error:", e.message);
   }
 }
 
-// 🔁 ทำงานรอบแรก
 runBot();
-
-// 🔁 ทำซ้ำทุก 10 นาที
 setInterval(runBot, 10 * 60 * 1000);
