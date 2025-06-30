@@ -1,14 +1,14 @@
 {
   "name": "ai-comment-agent",
   "version": "1.0.0",
-  "description": "AI Agent ตอบคอมเมนต์บน Facebook อัตโนมัติ",
+  "description": "AI Agent ตอบคอมเมนต์ Facebook อัตโนมัติ",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
     "hi": "echo '👋 สวัสดีครับ Dang! ระบบ AI พร้อมทำงานแล้วครับ 😎'"
   },
-  "author": "Dang (CEO 🤖)",
+  "author": "Dang",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
