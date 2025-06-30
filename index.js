@@ -4,7 +4,7 @@ import { getReplyFromGPT } from "./gptReply.js";
 
 dotenv.config();
 
-const runBot = async () => {
+async function runBot() {
   const comments = await getComments();
 
   for (const comment of comments) {
@@ -12,8 +12,12 @@ const runBot = async () => {
 
     const reply = await getReplyFromGPT(comment.message);
     await replyToComment(comment.id, reply);
-    console.log(`💬 ตอบคอมเมนต์: "${comment.message}" → "${reply}"`);
+    console.log(`💬 ตอบ: "${comment.message}" → "${reply}"`);
   }
-};
+}
 
+// 🔁 ทำงานรอบแรก
 runBot();
+
+// 🔁 ทำซ้ำทุก 10 นาที
+setInterval(runBot, 10 * 60 * 1000);
