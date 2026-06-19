@@ -1,1 +1,44 @@
+name: Research Pipeline
 
+enabled: true
+
+description: Automatic Market Research Workflow
+
+trigger:
+
+  type: manual
+
+steps:
+
+  - name: Analyze Competitors
+    agent: research/competitor_agent.py
+
+  - name: Search Trends
+    agent: research/trend_agent.py
+
+  - name: Analyze Keywords
+    agent: research/keyword_agent.py
+
+  - name: Generate Research Report
+    agent: research/report_agent.py
+
+  - name: Save Report
+    storage: storage/reports/
+
+outputs:
+
+  report: storage/reports/
+
+  keywords: storage/reports/
+
+notifications:
+
+  dashboard: true
+
+  telegram: true
+
+retry:
+
+  attempts: 3
+
+timeout: 1800
