@@ -1,1 +1,43 @@
+default_provider: openai
 
+providers:
+
+  openai:
+    enabled: true
+    model: gpt-5
+    api_key_env: OPENAI_API_KEY
+    temperature: 0.7
+    max_tokens: 4096
+
+  gemini:
+    enabled: true
+    model: gemini-2.5-pro
+    api_key_env: GEMINI_API_KEY
+    temperature: 0.7
+
+  claude:
+    enabled: true
+    model: claude-sonnet-4
+    api_key_env: ANTHROPIC_API_KEY
+    temperature: 0.7
+
+  local:
+    enabled: true
+    url: http://localhost:11434
+    model: llama3.1
+
+routing:
+
+  coding: openai
+  reasoning: claude
+  research: gemini
+  automation: openai
+  chat: openai
+  fallback: local
+
+retry:
+  attempts: 3
+  delay: 5
+
+logging:
+  enabled: true
