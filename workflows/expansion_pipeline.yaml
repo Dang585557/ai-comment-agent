@@ -1,1 +1,75 @@
+name: Expansion Pipeline
 
+enabled: false
+
+description: Automatically initialize new AI teams and business modules
+
+trigger:
+
+  type: manual
+
+teams:
+
+  - facebook
+
+  - youtube
+
+  - shopee
+
+  - lazada
+
+  - line
+
+  - marketing
+
+  - seo
+
+  - sales
+
+  - accounting
+
+  - customer_service
+
+steps:
+
+  - name: Create Team Structure
+    agent: manager/team_builder.py
+
+  - name: Generate Configuration
+    agent: developer/coder_agent.py
+
+  - name: Register Agents
+    agent: manager/manager.py
+
+  - name: Create Workflows
+    agent: manager/planner.py
+
+  - name: Initialize Monitoring
+    agent: monitoring/agent_monitor.py
+
+  - name: Register Dashboard
+    agent: dashboard/backend/api.py
+
+  - name: Save Configuration
+    storage: configs/
+
+  - name: Generate Report
+    agent: manager/report_generator.py
+
+outputs:
+
+  report: storage/reports/
+
+  configs: configs/
+
+notifications:
+
+  dashboard: true
+
+  telegram: true
+
+retry:
+
+  attempts: 3
+
+timeout: 3600
