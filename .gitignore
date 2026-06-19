@@ -1,0 +1,116 @@
+# Python
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environment
+
+.venv/
+venv/
+env/
+
+# Environment
+
+.env
+.env.local
+
+# Logs
+
+logs/
+*.log
+
+# Database
+
+*.db
+*.sqlite3
+
+# Cache
+
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Build
+
+dist/
+build/
+
+# IDE
+
+.vscode/
+.idea/
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Node
+
+node_modules/
+
+.next/
+
+out/
+
+# Storage
+
+storage/videos/
+storage/images/
+storage/audio/
+storage/reports/
+storage/backups/
+storage/tmp/
+
+# Playwright
+
+playwright-report/
+test-results/
+
+# Coverage
+
+.coverage
+htmlcov/
+
+# Temporary
+
+tmp/
+temp/
+
+# Runtime
+
+*.pid
+*.lock
+
+# Secrets
+
+*.pem
+*.key
+*.crt
+
+# Local Config
+
+config.local.yaml
+
+# Generated Files
+
+generated/
+exports/
+
+# AI Memory
+
+memory/vector_db/
+memory/index/
+memory/cache/
+
+# ChromaDB
+
+chroma/
+
+# FAISS
+
+*.faiss
+*.index
