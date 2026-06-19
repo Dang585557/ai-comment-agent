@@ -1,1 +1,68 @@
 
+telegram:
+
+  enabled: true
+
+  bot_token: ${TELEGRAM_BOT_TOKEN}
+
+  owner_chat_id: ${TELEGRAM_OWNER_CHAT_ID}
+
+  parse_mode: HTML
+
+  polling: true
+
+  webhook: false
+
+notifications:
+
+  startup: true
+
+  shutdown: true
+
+  errors: true
+
+  warnings: true
+
+  reports: true
+
+  task_completed: true
+
+commands:
+
+  /start: true
+
+  /help: true
+
+  /status: true
+
+  /agents: true
+
+  /tasks: true
+
+  /report: true
+
+  /restart: false
+
+  /shutdown: false
+
+permissions:
+
+  owner_only:
+    - /restart
+    - /shutdown
+
+  admin:
+    - /status
+    - /agents
+    - /tasks
+    - /report
+
+security:
+
+  allow_unknown_users: false
+
+  rate_limit: 30
+
+logging:
+
+  enabled: true
