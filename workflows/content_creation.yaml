@@ -1,1 +1,61 @@
+name: Content Creation Pipeline
 
+enabled: true
+
+description: Create TikTok content automatically
+
+trigger:
+
+  type: manual
+
+steps:
+
+  - name: Research Trends
+    agent: research/trend_agent.py
+
+  - name: Analyze Keywords
+    agent: research/keyword_agent.py
+
+  - name: Generate Script
+    agent: tiktok/script_agent.py
+
+  - name: Generate Voice
+    agent: video/voice_agent.py
+
+  - name: Edit Video
+    agent: video/editor_agent.py
+
+  - name: Generate Subtitle
+    agent: video/subtitle_agent.py
+
+  - name: Generate Thumbnail
+    agent: video/thumbnail_agent.py
+
+  - name: Render Video
+    agent: video/render_agent.py
+
+  - name: Review Content
+    agent: tiktok/analytics_agent.py
+
+  - name: Publish
+    agent: tiktok/manager.py
+
+outputs:
+
+  script: storage/scripts/
+
+  video: storage/videos/
+
+  thumbnail: storage/images/
+
+notifications:
+
+  dashboard: true
+
+  telegram: true
+
+retry:
+
+  attempts: 3
+
+timeout: 1800
