@@ -1,1 +1,55 @@
+name: Video Pipeline
 
+enabled: true
+
+description: Automatic Video Production Workflow
+
+trigger:
+
+  type: manual
+
+steps:
+
+  - name: Import Assets
+    agent: video/editor_agent.py
+
+  - name: Arrange Timeline
+    agent: video/editor_agent.py
+
+  - name: Generate Voice
+    agent: video/voice_agent.py
+
+  - name: Generate Subtitles
+    agent: video/subtitle_agent.py
+
+  - name: Generate Thumbnail
+    agent: video/thumbnail_agent.py
+
+  - name: Render Video
+    agent: video/render_agent.py
+
+  - name: Quality Check
+    agent: developer/tester_agent.py
+
+  - name: Export Video
+    agent: video/render_agent.py
+
+outputs:
+
+  video: storage/videos/
+
+  subtitle: storage/scripts/
+
+  thumbnail: storage/images/
+
+notifications:
+
+  dashboard: true
+
+  telegram: true
+
+retry:
+
+  attempts: 3
+
+timeout: 3600
