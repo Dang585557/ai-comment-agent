@@ -1,1 +1,85 @@
+version: 1.0
 
+workflows:
+
+  content_creation:
+
+    enabled: true
+
+    steps:
+      - research
+      - script
+      - voice
+      - video
+      - thumbnail
+      - review
+      - publish
+
+  video_pipeline:
+
+    enabled: true
+
+    steps:
+      - import
+      - edit
+      - subtitle
+      - render
+      - upload
+
+  research_pipeline:
+
+    enabled: true
+
+    steps:
+      - competitor_analysis
+      - keyword_analysis
+      - trend_analysis
+      - report_generation
+
+  website_pipeline:
+
+    enabled: true
+
+    steps:
+      - build
+      - test
+      - deploy
+      - monitor
+
+  daily_report:
+
+    enabled: true
+
+    schedule: "0 22 * * *"
+
+  expansion_pipeline:
+
+    enabled: false
+
+    teams:
+      - facebook
+      - youtube
+      - shopee
+      - lazada
+      - line
+      - seo
+      - marketing
+      - sales
+      - accounting
+      - customer_service
+
+task_queue:
+
+  max_workers: 20
+
+  retry: 3
+
+  timeout: 600
+
+notifications:
+
+  telegram: true
+
+  dashboard: true
+
+  github: false
