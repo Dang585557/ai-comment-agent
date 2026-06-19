@@ -1,1 +1,98 @@
+dashboard:
 
+  title: AI-COMPANY Dashboard
+
+  theme: dark
+
+  refresh_interval: 5
+
+  websocket: true
+
+layout:
+
+  sidebar:
+
+    enabled: true
+
+    collapsed: false
+
+    menu:
+
+      - Dashboard
+      - CEO Office
+      - AI Manager
+      - Teams
+      - Agents
+      - Tasks
+      - Workflows
+      - Reports
+      - Monitoring
+      - Computer Lab
+      - Mobile Lab
+      - Memory Center
+      - Storage
+      - Settings
+
+  header:
+
+    show_clock: true
+
+    show_status: true
+
+    show_profile: true
+
+  right_panel:
+
+    enabled: true
+
+    live_activity: true
+
+  bottom_panel:
+
+    recent_tasks: true
+
+    system_logs: true
+
+    quick_actions: true
+
+cards:
+
+  total_agents: true
+
+  active_tasks: true
+
+  completed_today: true
+
+  system_health: true
+
+  storage_used: true
+
+  api_calls_today: true
+
+office:
+
+  ceo: true
+
+  manager: true
+
+  tiktok: true
+
+  video: true
+
+  developer: true
+
+  research: true
+
+  website: true
+
+  computer_lab: true
+
+  mobile_lab: true
+
+security:
+
+  authentication: true
+
+  role_permission: true
+
+  session_timeout: 3600
