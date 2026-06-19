@@ -1,1 +1,110 @@
+system:
 
+  name: AI-COMPANY
+
+  version: 1.0.0
+
+  environment: development
+
+  timezone: Asia/Bangkok
+
+  debug: true
+
+server:
+
+  host: 0.0.0.0
+
+  port: 8000
+
+  workers: 4
+
+database:
+
+  postgres:
+
+    enabled: true
+
+    host: localhost
+
+    port: 5432
+
+    database: ai_company
+
+    username: postgres
+
+    password_env: POSTGRES_PASSWORD
+
+  redis:
+
+    enabled: true
+
+    host: localhost
+
+    port: 6379
+
+storage:
+
+  root: storage/
+
+  backup: storage/backups/
+
+  reports: storage/reports/
+
+  videos: storage/videos/
+
+  images: storage/images/
+
+  audio: storage/audio/
+
+logging:
+
+  level: INFO
+
+  directory: logs/
+
+  save_days: 30
+
+monitoring:
+
+  enabled: true
+
+  heartbeat_interval: 10
+
+  auto_restart: true
+
+security:
+
+  jwt_secret_env: JWT_SECRET
+
+  api_key_required: true
+
+  cors:
+
+    enabled: true
+
+    origins:
+      - "*"
+
+backup:
+
+  enabled: true
+
+  schedule: "0 3 * * *"
+
+  keep_days: 30
+
+github:
+
+  auto_pull: false
+
+  auto_push: false
+
+telegram:
+
+  enabled: true
+
+dashboard:
+
+  websocket: true
+
+  auto_refresh: 5
