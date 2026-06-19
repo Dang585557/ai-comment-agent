@@ -1,1 +1,51 @@
+name: Website Pipeline
 
+enabled: true
+
+description: Website Build, Test and Deploy Workflow
+
+trigger:
+
+  type: manual
+
+steps:
+
+  - name: Pull Latest Source
+    agent: github/github_agent.py
+
+  - name: Install Dependencies
+    command: npm install
+
+  - name: Build Website
+    command: npm run build
+
+  - name: Run Tests
+    agent: developer/tester_agent.py
+
+  - name: Deploy Website
+    agent: website/deploy_agent.py
+
+  - name: Verify Deployment
+    agent: website/monitor_agent.py
+
+  - name: SEO Scan
+    agent: website/seo_agent.py
+
+  - name: Generate Deployment Report
+    agent: research/report_agent.py
+
+outputs:
+
+  report: storage/reports/
+
+notifications:
+
+  dashboard: true
+
+  telegram: true
+
+retry:
+
+  attempts: 3
+
+timeout: 3600
