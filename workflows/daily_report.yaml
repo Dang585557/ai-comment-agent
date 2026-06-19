@@ -1,1 +1,43 @@
+name: Daily Report
 
+enabled: true
+
+schedule: "0 22 * * *"
+
+description: Generate AI Company Daily Report
+
+steps:
+
+  - collect_system_status
+
+  - collect_agent_status
+
+  - collect_task_statistics
+
+  - collect_storage_usage
+
+  - collect_api_usage
+
+  - generate_summary
+
+  - export_pdf
+
+  - save_report
+
+  - notify_telegram
+
+outputs:
+
+  pdf: true
+
+  json: true
+
+storage:
+
+  path: storage/reports/
+
+notifications:
+
+  telegram: true
+
+  dashboard: true
