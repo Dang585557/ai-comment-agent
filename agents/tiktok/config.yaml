@@ -1,1 +1,64 @@
 
+team: TikTok
+
+enabled: true
+
+manager: manager.py
+
+agents:
+
+  - content_agent.py
+
+  - script_agent.py
+
+  - trend_agent.py
+
+  - analytics_agent.py
+
+  - report_agent.py
+
+llm:
+
+  provider: openai
+
+  model: gpt-5
+
+workflow:
+
+  - trend
+
+  - script
+
+  - content
+
+  - analytics
+
+  - report
+
+storage:
+
+  scripts: storage/scripts/
+
+  reports: storage/reports/
+
+  videos: storage/videos/
+
+  thumbnails: storage/images/
+
+settings:
+
+  auto_publish: false
+
+  save_report: true
+
+  retry: 3
+
+  timeout: 1800
+
+monitoring:
+
+  enabled: true
+
+logging:
+
+  enabled: true
