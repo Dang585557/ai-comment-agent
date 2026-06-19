@@ -1,1 +1,65 @@
+system:
+  company: AI-COMPANY
+  version: 1.0.0
 
+agents:
+
+  tiktok:
+    enabled: true
+    manager: manager.py
+    workers:
+      - content_agent
+      - script_agent
+      - trend_agent
+      - analytics_agent
+      - report_agent
+
+  video:
+    enabled: true
+    workers:
+      - editor_agent
+      - subtitle_agent
+      - voice_agent
+      - thumbnail_agent
+      - render_agent
+
+  developer:
+    enabled: true
+    workers:
+      - architect_agent
+      - coder_agent
+      - reviewer_agent
+      - tester_agent
+      - documentation_agent
+
+  research:
+    enabled: true
+    workers:
+      - competitor_agent
+      - trend_agent
+      - keyword_agent
+      - report_agent
+
+  website:
+    enabled: true
+    workers:
+      - deploy_agent
+      - seo_agent
+      - monitor_agent
+
+telegram:
+  enabled: true
+  notifications: true
+
+github:
+  enabled: true
+  auto_commit: false
+
+monitoring:
+  enabled: true
+  heartbeat: 10
+
+memory:
+  short_term: true
+  long_term: true
+  vector_db: true
