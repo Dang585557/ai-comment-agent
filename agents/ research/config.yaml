@@ -1,1 +1,55 @@
+team: Research
 
+enabled: true
+
+manager: report_agent.py
+
+agents:
+
+  - competitor_agent.py
+
+  - trend_agent.py
+
+  - keyword_agent.py
+
+  - report_agent.py
+
+llm:
+
+  provider: openai
+
+  model: gpt-5
+
+workflow:
+
+  - competitor_analysis
+
+  - trend_analysis
+
+  - keyword_research
+
+  - report_generation
+
+storage:
+
+  reports: storage/reports/
+
+  exports: storage/exports/
+
+settings:
+
+  auto_save: true
+
+  auto_export: true
+
+  retry: 3
+
+  timeout: 1800
+
+monitoring:
+
+  enabled: true
+
+logging:
+
+  enabled: true
