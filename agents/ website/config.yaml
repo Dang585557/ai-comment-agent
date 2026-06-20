@@ -1,1 +1,57 @@
+team: Website
 
+enabled: true
+
+manager: deploy_agent.py
+
+agents:
+
+  - deploy_agent.py
+
+  - seo_agent.py
+
+  - monitor_agent.py
+
+llm:
+
+  provider: openai
+
+  model: gpt-5
+
+workflow:
+
+  - build
+
+  - deploy
+
+  - verify
+
+  - seo_scan
+
+  - monitoring
+
+storage:
+
+  reports: storage/reports/
+
+  exports: storage/exports/
+
+settings:
+
+  auto_deploy: false
+
+  verify_after_deploy: true
+
+  retry: 3
+
+  timeout: 3600
+
+monitoring:
+
+  enabled: true
+
+  health_check_interval: 60
+
+logging:
+
+  enabled: true
