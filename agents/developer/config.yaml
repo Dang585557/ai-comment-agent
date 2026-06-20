@@ -1,1 +1,63 @@
+team: Developer
 
+enabled: true
+
+manager: architect_agent.py
+
+agents:
+
+  - architect_agent.py
+
+  - coder_agent.py
+
+  - reviewer_agent.py
+
+  - tester_agent.py
+
+  - documentation_agent.py
+
+llm:
+
+  provider: openai
+
+  model: gpt-5
+
+workflow:
+
+  - architecture
+
+  - code_generation
+
+  - review
+
+  - testing
+
+  - documentation
+
+storage:
+
+  source: ./
+
+  documentation: docs/
+
+  reports: storage/reports/
+
+settings:
+
+  auto_review: true
+
+  auto_test: true
+
+  auto_documentation: true
+
+  retry: 3
+
+  timeout: 3600
+
+monitoring:
+
+  enabled: true
+
+logging:
+
+  enabled: true
