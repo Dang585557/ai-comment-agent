@@ -1,1 +1,67 @@
+team: Video
 
+enabled: true
+
+manager: editor_agent.py
+
+agents:
+
+  - editor_agent.py
+
+  - subtitle_agent.py
+
+  - voice_agent.py
+
+  - thumbnail_agent.py
+
+  - render_agent.py
+
+llm:
+
+  provider: openai
+
+  model: gpt-5
+
+workflow:
+
+  - import_assets
+
+  - edit_video
+
+  - generate_voice
+
+  - generate_subtitles
+
+  - generate_thumbnail
+
+  - render_video
+
+storage:
+
+  videos: storage/videos/
+
+  audio: storage/audio/
+
+  subtitles: storage/scripts/
+
+  thumbnails: storage/images/
+
+settings:
+
+  default_resolution: "1080x1920"
+
+  default_fps: 30
+
+  auto_render: true
+
+  retry: 3
+
+  timeout: 3600
+
+monitoring:
+
+  enabled: true
+
+logging:
+
+  enabled: true
