@@ -1,18 +1,18 @@
-"""
-AI-COMPANY
-dashboard/backend/api.py
+"""FastAPI backend for the AI-COMPANY dashboard."""
 
-Dashboard API
-"""
+from __future__ import annotations
+
+from datetime import datetime
+from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
+from pydantic import BaseModel
 
-app = FastAPI(
-    title="AI-COMPANY Dashboard API",
-    version="1.0.0"
-)
+from ceo.command_center import CommandCenter
+
+
+app = FastAPI(title="AI-COMPANY Dashboard API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,182 +22,79 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+command_center = CommandCenter()
+
+
+class CommandRequest(BaseModel):
+    command: str
+
 
 @app.get("/")
-def root():
-
+def root() -> dict[str, Any]:
     return {
-
         "project": "AI-COMPANY",
-
         "status": "ONLINE",
-
-        "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+        "time": datetime.now().isoformat(timespec="seconds"),
     }
+
+
+@app.post("/command")
+def execute_command(payload: CommandRequest) -> dict[str, Any]:
+    return command_center.execute(payload.command)
 
 
 @app.get("/system/status")
-def system_status():
-
-    return {
-
-        "status": "ONLINE",
-
-        "cpu": "0%",
-
-        "ram": "0%",
-
-        "storage": "0%"
-
-    }
+def system_status() -> dict[str, Any]:
+    return command_center.system_status()
 
 
 @app.get("/dashboard/cards")
-def dashboard_cards():
+def dashboard_cards() -> dict[str, Any]:
+    return command_center.manager.dashboard_cards()
 
-    return {
 
-        "total_agents": 0,
+@app.get("/tasks")
+def tasks() -> list[dict[str, Any]]:
+    return command_center.manager.list_tasks()
 
-        "active_tasks": 0,
 
-        "completed_today": 0,
+@app.get("/activities")
+def activities() -> list[dict[str, Any]]:
+    return command_center.manager.list_activities()
 
-        "system_health": "Healthy",
 
-        "storage_used": "0 GB",
+@app.get("/logs")
+def logs() -> list[dict[str, Any]]:
+    return command_center.manager.list_logs()
 
-        "api_calls_today": 0
 
-    }
+@app.get("/memory/search")
+def memory_search(q: str = "", bucket: str | None = None) -> list[dict[str, Any]]:
+    return command_center.manager.memory.search(q, bucket=bucket)
 
 
 @app.get("/teams")
-def teams():
-
+def teams() -> list[dict[str, Any]]:
     return [
-
-        {
-
-            "name": "TikTok Team",
-
-            "status": "ONLINE"
-
-        },
-
-        {
-
-            "name": "Video Team",
-
-            "status": "ONLINE"
-
-        },
-
-        {
-
-            "name": "Developer Team",
-
-            "status": "ONLINE"
-
-        },
-
-        {
-
-            "name": "Research Team",
-
-            "status": "ONLINE"
-
-        },
-
-        {
-
-            "name": "Website Team",
-
-            "status": "ONLINE"
-
-        }
-
+        {"name": "TikTok Team", "team": "tiktok", "status": "ONLINE", "agents": 8, "performance": 75},
+        {"name": "Video Team", "team": "video", "status": "ONLINE", "agents": 6, "performance": 60},
+        {"name": "Developer Team", "team": "developer", "status": "ONLINE", "agents": 10, "performance": 90},
+        {"name": "Research Team", "team": "research", "status": "ONLINE", "agents": 6, "performance": 85},
+        {"name": "Website Team", "team": "website", "status": "ONLINE", "agents": 4, "performance": 80},
     ]
 
 
 @app.get("/devices")
-def devices():
-
-    return {
-
-        "cloud_pc": [
-
-            {
-
-                "name": "Cloud PC #1",
-
-                "status": "ONLINE"
-
-            }
-
-        ],
-
-        "android": [
-
-            {
-
-                "name": "Android #1",
-
-                "status": "ONLINE"
-
-            }
-
-        ],
-
-        "ios": []
-
-    }
-
-
-@app.get("/logs")
-def logs():
-
+def devices() -> list[dict[str, Any]]:
     return [
-
-        {
-
-            "level": "INFO",
-
-            "message": "System Started"
-
-        }
-
+        {"name": "Cloud PC #1", "type": "Windows 11", "status": "ONLINE"},
+        {"name": "Cloud PC #2", "type": "Windows 11", "status": "OFFLINE"},
+        {"name": "Android Device #1", "type": "Android", "status": "ONLINE"},
+        {"name": "Android Device #2", "type": "Android", "status": "ONLINE"},
+        {"name": "iOS Device #1", "type": "iOS", "status": "ONLINE"},
     ]
 
 
-@app.get("/activities")
-def activities():
-
-    return [
-
-        {
-
-            "team": "TikTok",
-
-            "task": "Waiting..."
-
-        },
-
-        {
-
-            "team": "Video",
-
-            "task": "Waiting..."
-
-        },
-
-        {
-
-            "team": "Developer",
-
-            "task": "Waiting..."
-
-        }
-
-    ]
+@app.get("/reports/daily")
+def daily_report() -> dict[str, Any]:
+    return command_center.daily_report()

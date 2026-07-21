@@ -1,0 +1,2 @@
+import Link from "next/link";import {useRouter} from "next/router";
+export default function Page(){const r=useRouter();const team=String(r.query.team||'team');return <main style={{minHeight:'100vh',background:'#050a12',color:'#e6edf8',padding:24,fontFamily:'system-ui'}}><Link href="/dashboard">← Dashboard</Link><h1>{team.toUpperCase()} Team</h1><p>Agents, active tasks, performance, and recent outputs.</p></main>}
