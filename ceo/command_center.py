@@ -49,6 +49,21 @@ class CommandCenter:
 
         return self.manager.system_status()
 
+    def status(self):
+
+        return self.system_status()
+
     def daily_report(self):
 
         return self.manager.daily_report()
+
+
+if __name__ == "__main__":
+
+    center = CommandCenter()
+
+    print(
+        center.execute(
+            "สร้างคลิป TikTok 10 คลิป"
+        )
+    )
